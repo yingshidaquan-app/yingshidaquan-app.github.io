@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>影视大全｜剧集条目检索与追剧排期速查 - yingshidaquan-app.github.io</title>
+<meta name="description" content="影视大全按更新日编排剧目台账，收录条目、集数时长、类型分组与看点拆解，周三、周六各翻一次；手机端直接查阅，帮你在打开播放器之前先筛掉不合口味的那一半。站点入口：https://yingshidaquan-app.github.io">
+<meta name="keywords" content="影视大全,影视大全剧集检索,追剧排期表,剧集看点拆解,高分剧集片单,影视大全官网,yingshidaquan-app">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="author" content="影视大全编辑部">
+<meta name="theme-color" content="#121110">
+<link rel="canonical" href="https://yingshidaquan-app.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="影视大全">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="影视大全｜剧集条目检索与追剧排期速查">
+<meta property="og:description" content="按更新日编排的剧目台账，条目、排期、看点拆解一次看完。">
+<meta property="og:url" content="https://yingshidaquan-app.github.io/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="影视大全｜剧集条目检索与追剧排期速查">
+<meta name="twitter:description" content="条目、排期、看点拆解一次看完，手机端可直接查阅。">
+<style>
+:root{
+  --ink:#121110;
+  --ink-2:#1b1917;
+  --ink-3:#242120;
+  --paper:#f4ece1;
+  --paper-dim:#cbc0b1;
+  --flame:#ff6b35;
+  --mint:#2ec4b6;
+  --line:rgba(244,236,225,.14);
+  --radius:14px;
+  --max:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  background:var(--ink);
+  color:var(--paper);
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Source Han Sans SC",system-ui,sans-serif;
+  font-size:16px;line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(120% 80% at 88% -10%,rgba(255,107,53,.16),transparent 60%),radial-gradient(90% 70% at 5% 8%,rgba(46,196,182,.10),transparent 62%);
+  background-attachment:fixed;
+}
+a{color:inherit;text-decoration:none}
+img,svg{max-width:100%;display:block}
+ul,ol{list-style:none}
+.wrap{width:100%;max-width:var(--max);margin:0 auto;padding:0 20px}
+
+/* 顶部细条 */
+.topbar{border-bottom:1px solid var(--line);background:rgba(18,17,16,.9);backdrop-filter:blur(6px);position:sticky;top:0;z-index:40}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;height:44px;font-size:13px;color:var(--paper-dim)}
+.topbar b{color:var(--flame);font-weight:600;letter-spacing:.06em}
+.topbar .url{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;color:var(--paper-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.topbar .url a{border-bottom:1px dotted rgba(255,107,53,.6);color:var(--flame)}
+
+/* 头部 */
+.hero{padding:58px 0 30px}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--mint);border:1px solid rgba(46,196,182,.35);border-radius:999px;padding:5px 14px}
+.kicker span{width:6px;height:6px;border-radius:50%;background:var(--mint);display:inline-block}
+.hero h1{font-size:clamp(40px,9vw,88px);line-height:1.02;letter-spacing:-.02em;margin:22px 0 0;font-weight:800}
+.hero h1 em{font-style:normal;color:var(--flame)}
+.hero .lede{max-width:640px;margin:20px 0 0;color:var(--paper-dim);font-size:clamp(15px,2.2vw,18px)}
+.siteurl{margin:26px 0 0;display:inline-flex;flex-wrap:wrap;align-items:center;gap:10px;background:var(--ink-2);border:1px solid var(--line);border-left:3px solid var(--flame);border-radius:10px;padding:12px 16px;font-size:14px}
+.siteurl i{font-style:normal;color:var(--paper-dim)}
+.siteurl a{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--flame);word-break:break-all}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin:32px 0 0}
+.stat{border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;background:linear-gradient(180deg,rgba(244,236,225,.05),transparent)}
+.stat strong{display:block;font-size:26px;letter-spacing:-.01em;color:var(--paper)}
+.stat span{font-size:12.5px;color:var(--paper-dim)}
+.searchbar{margin:26px 0 0;display:flex;gap:10px;flex-wrap:wrap}
+.searchbar input{flex:1 1 260px;min-width:0;background:var(--ink-2);border:1px solid var(--line);border-radius:10px;color:var(--paper);padding:13px 15px;font-size:15px;font-family:inherit}
+.searchbar input::placeholder{color:#8d8375}
+.searchbar .btn{background:var(--flame);color:#180f0a;border:0;border-radius:10px;padding:13px 22px;font-weight:700;font-size:15px;cursor:pointer;font-family:inherit}
+
+/* 导航 */
+.navbar{position:sticky;top:44px;z-index:35;background:rgba(18,17,16,.94);backdrop-filter:blur(6px);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.navbar .wrap{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding:0 20px}
+.navbar .wrap::-webkit-scrollbar{display:none}
+.navbar a{flex:0 0 auto;padding:14px 14px;font-size:14.5px;color:var(--paper-dim);border-bottom:2px solid transparent;white-space:nowrap}
+.navbar a:hover,.navbar a:focus{color:var(--paper);border-bottom-color:var(--flame)}
+
+/* 通用区块 */
+section{padding:56px 0;border-bottom:1px solid var(--line)}
+.sechead{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:26px}
+.sechead h2{font-size:clamp(24px,4vw,34px);letter-spacing:-.01em;line-height:1.2}
+.sechead h2 em{font-style:normal;color:var(--flame)}
+.sechead p{color:var(--paper-dim);font-size:14px;max-width:460px}
+.tag{display:inline-block;font-size:11.5px;letter-spacing:.08em;padding:3px 9px;border-radius:6px;background:rgba(46,196,182,.14);color:var(--mint);border:1px solid rgba(46,196,182,.28)}
+.tag.hot{background:rgba(255,107,53,.14);color:var(--flame);border-color:rgba(255,107,53,.32)}
+
+/* 栏目一：热映 bento */
+.bento{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:var(--radius);background:var(--ink-2);display:flex;flex-direction:column;transition:transform .25s ease,border-color .25s ease}
+.card:hover{transform:translateY(-4px);border-color:rgba(255,107,53,.5)}
+.card .ph{height:150px;position:relative}
+.card .ph b{position:absolute;left:14px;bottom:12px;font-size:19px;letter-spacing:.02em;text-shadow:0 2px 12px rgba(0,0,0,.6)}
+.card .ph i{position:absolute;right:12px;top:12px;font-style:normal;font-size:11px;background:rgba(0,0,0,.42);border:1px solid rgba(244,236,225,.24);padding:2px 8px;border-radius:999px}
+.ph.p1{background:linear-gradient(135deg,#3a2318,#ff6b35 70%,#7a2f12)}
+.ph.p2{background:linear-gradient(135deg,#123b39,#2ec4b6 72%,#0e5f59)}
+.ph.p3{background:linear-gradient(135deg,#2a2140,#8a7bd6 70%,#37285e)}
+.ph.p4{background:linear-gradient(135deg,#3d1f2b,#e2557a 70%,#5c2033)}
+.ph.p5{background:linear-gradient(135deg,#1d3320,#7fbf5f 72%,#2b4a2d)}
+.card .body{padding:14px 16px 18px}
+.card .body h3{font-size:16.5px;margin-bottom:6px}
+.card .body p{font-size:13.5px;color:var(--paper-dim)}
+.meta{margin-top:12px;display:flex;gap:14px;font-size:12.5px;color:#8d8375;border-top:1px dashed var(--line);padding-top:10px}
+.card.wide{grid-column:span 2}
+.card.wide .ph{height:200px}
+
+/* 栏目二：排行 */
+.rank{display:grid;grid-template-columns:1fr 1fr;gap:0 34px}
+.rank li{display:flex;gap:18px;align-items:flex-start;padding:16px 0;border-bottom:1px dashed var(--line)}
+.rank .no{font-size:28px;font-weight:800;color:rgba(244,236,225,.22);line-height:1;min-width:44px;font-variant-numeric:tabular-nums}
+.rank li:first-child .no,.rank li:nth-child(2) .no,.rank li:nth-child(3) .no{color:var(--flame)}
+.rank h3{font-size:16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.rank p{font-size:13.5px;color:var(--paper-dim);margin-top:4px}
+.rank .score{margin-left:auto;font-size:13px;color:var(--mint);font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* 栏目三：日历 */
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:12px}
+.day{border:1px solid var(--line);border-radius:12px;padding:14px 12px;background:rgba(244,236,225,.03);min-height:150px}
+.day.today{border-color:var(--flame);background:rgba(255,107,53,.08)}
+.day h4{font-size:13px;letter-spacing:.1em;color:var(--paper-dim);margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
+.day h4 em{font-style:normal;font-size:10.5px;color:var(--flame);letter-spacing:0}
+.day li{font-size:13.5px;padding:7px 0;border-top:1px dotted var(--line);line-height:1.5}
+.day li:first-child{border-top:0}
+.day li span{display:block;font-size:11.5px;color:#8d8375}
+
+/* 栏目四：看点拆解 */
+.dissect{display:grid;gap:20px}
+.drow{display:grid;grid-template-columns:180px 1fr;gap:22px;align-items:center;border:1px solid var(--line);border-radius:var(--radius);padding:18px;background:var(--ink-2)}
+.drow:nth-child(even){direction:rtl}
+.drow:nth-child(even)>*{direction:ltr}
+.dcover{height:120px;border-radius:10px;position:relative;overflow:hidden}
+.dcover b{position:absolute;inset:auto 0 10px 12px;font-size:15px}
+.dc1{background:linear-gradient(160deg,#4a2a12,#ff6b35)}
+.dc2{background:linear-gradient(160deg,#123b39,#2ec4b6)}
+.dc3{background:linear-gradient(160deg,#3d1f2b,#e2557a)}
+.drow h3{font-size:18px;margin-bottom:6px}
+.drow p{font-size:14px;color:var(--paper-dim)}
+.drow .more{display:inline-block;margin-top:12px;font-size:13.5px;color:var(--flame);border-bottom:1px solid rgba(255,107,53,.45);padding-bottom:2px}
+
+/* 栏目五：FAQ */
+.faq{display:grid;gap:12px;max-width:880px}
+.faq details{border:1px solid var(--line);border-radius:12px;background:var(--ink-2);padding:0 18px}
+.faq details[open]{border-color:rgba(255,107,53,.42)}
+.faq summary{cursor:pointer;padding:16px 0;font-size:15.5px;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:14px;align-items:center}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--flame);font-size:20px;line-height:1}
+.faq details[open] summary::after{content:"−"}
+.faq p{padding:0 0 16px;font-size:14px;color:var(--paper-dim)}
+
+/* 栏目六：关于 */
+.about{display:grid;grid-template-columns:1.2fr .8fr;gap:34px;align-items:start}
+.about h3{font-size:20px;margin-bottom:12px}
+.about p{color:var(--paper-dim);font-size:14.5px;margin-bottom:12px}
+.infobox{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.infobox div{display:flex;justify-content:space-between;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line);font-size:13.5px}
+.infobox div:last-child{border-bottom:0}
+.infobox span{color:var(--paper-dim)}
+.infobox b{font-weight:600}
+
+/* 页脚 */
+footer{padding:44px 0 34px;background:var(--ink-2)}
+.footgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:26px}
+.footgrid h5{font-size:13px;letter-spacing:.14em;color:var(--flame);margin-bottom:12px;text-transform:uppercase}
+.footgrid li{padding:5px 0;font-size:13.5px;color:var(--paper-dim)}
+.footgrid li a:hover{color:var(--paper);border-bottom:1px solid rgba(255,107,53,.5)}
+.footbar{margin-top:32px;padding-top:20px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;font-size:12.5px;color:#8d8375}
+.footbar a{color:var(--mint)}
+.note{margin-top:14px;font-size:12px;color:#7d7466;line-height:1.7}
+
+/* 移动端 */
+@media (max-width:900px){
+  .bento{grid-template-columns:repeat(2,1fr)}
+  .card.wide{grid-column:span 2}
+  .rank{grid-template-columns:1fr}
+  .about{grid-template-columns:1fr}
+  .cal{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:600px){
+  body{font-size:15px}
+  .hero{padding:36px 0 20px}
+  section{padding:40px 0}
+  .bento{grid-template-columns:1fr}
+  .card.wide{grid-column:span 1}
+  .card.wide .ph{height:170px}
+  .drow{grid-template-columns:1fr;gap:14px}
+  .drow:nth-child(even){direction:ltr}
+  .dcover{height:110px}
+  .cal{grid-template-columns:1fr}
+  .day{min-height:0}
+  .topbar .wrap{height:40px}
+  .navbar{top:40px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://yingshidaquan-app.github.io/#website",
+      "url":"https://yingshidaquan-app.github.io/",
+      "name":"影视大全",
+      "alternateName":"影视大全 剧集条目检索",
+      "inLanguage":"zh-CN",
+      "description":"影视大全按更新日编排剧目台账，收录条目、集数时长与看点拆解。",
+      "publisher":{"@id":"https://yingshidaquan-app.github.io/#org"}
+    },
+    {
+      "@type":"Organization",
+      "@id":"https://yingshidaquan-app.github.io/#org",
+      "name":"影视大全",
+      "url":"https://yingshidaquan-app.github.io/",
+      "description":"剧目条目与追剧排期整理站点，周三、周六更新。"
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://yingshidaquan-app.github.io/#page",
+      "url":"https://yingshidaquan-app.github.io/",
+      "name":"影视大全｜剧集条目检索与追剧排期速查",
+      "isPartOf":{"@id":"https://yingshidaquan-app.github.io/#website"},
+      "inLanguage":"zh-CN",
+      "primaryImageOfPage":{"@type":"ImageObject","url":"https://yingshidaquan-app.github.io/"}
+    },
+    {
+      "@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"影视大全","item":"https://yingshidaquan-app.github.io/"},
+        {"@type":"ListItem","position":2,"name":"剧集排行"},
+        {"@type":"ListItem","position":3,"name":"追剧日历"},
+        {"@type":"ListItem","position":4,"name":"看点拆解"}
+      ]
+    },
+    {
+      "@type":"FAQPage",
+      "mainEntity":[
+        {
+          "@type":"Question",
+          "name":"影视大全多久更新一次条目？",
+          "acceptedAnswer":{"@type":"Answer","text":"周三和周六各整理一次，周三补新上线的条目，周六补旧片与遗漏的集数信息，遇到集中上线会临时加更一期。"}
+        },
+        {
+          "@type":"Question",
+          "name":"影视大全的条目信息从哪里来？",
+          "acceptedAnswer":{"@type":"Answer","text":"以公开的上映公告、片方资料与播出编排为基础，再由编辑逐条核对集数、时长和类型分组，核对不上的条目会先挂在待确认区，不写入正表。"}
+        },
+        {
+          "@type":"Question",
+          "name":"追剧日历上的时间准不准？",
+          "acceptedAnswer":{"@type":"Answer","text":"日历按平台公布的更新日排布，遇到延期或加更会在当天上午改一次；跨时区上线的作品按北京时间换算后标注。"}
+        },
+        {
+          "@type":"Question",
+          "name":"影视大全提供在线播放吗？",
+          "acceptedAnswer":{"@type":"Answer","text":"不提供。这里只做条目检索、排期对照和看点拆解，想看正片请回到持有版权的播放平台。"}
+        },
+        {
+          "@type":"Question",
+          "name":"怎么快速筛掉不合口味的剧？",
+          "acceptedAnswer":{"@type":"Answer","text":"先看类型分组和单集时长，再看拆解里的节奏描述；连着两集超过九十分钟的一般是慢热型，适合整段空闲时间看。"}
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/yazhou.js"></script>
+
+<div class="topbar">
+  <div class="wrap">
+    <b>影视大全</b>
+    <span class="url">官网 <a href="#">https://yingshidaquan-app.github.io</a></span>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker"><span></span>条目 · 排期 · 看点</span>
+    <h1>影视大全<br><em>先挑，再看</em></h1>
+    <p class="lede">一本按更新日编排的剧目台账。周三、周六各翻一次，把新上的条目和值得回头补的旧片排在一起，集数、时长、节奏都写在明面上，省得点开播放器才发现对不上胃口。</p>
+    <div class="siteurl">
+      <i>站点入口</i>
+      <a href="#">https://yingshidaquan-app.github.io</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><strong>12,860</strong><span>在库条目</span></div>
+      <div class="stat"><strong>34</strong><span>类型分组</span></div>
+      <div class="stat"><strong>2 次 / 周</strong><span>固定更新</span></div>
+      <div class="stat"><strong>2019</strong><span>开始记录</span></div>
+    </div>
+    <form class="searchbar" action="#" method="get">
+      <input type="text" name="q" placeholder="想查哪一部？输入剧名或类型，比如：刑侦、单集 45 分钟" aria-label="条目检索">
+      <button class="btn" type="submit">翻台账</button>
+    </form>
+  </div>
+</header>
+
+<nav class="navbar" aria-label="主导航">
+  <div class="wrap">
+    <a href="#">今日热映</a>
+    <a href="#">剧集排行</a>
+    <a href="#">追剧日历</a>
+    <a href="#">看点拆解</a>
+    <a href="#">类型索引</a>
+    <a href="#">常见问题</a>
+    <a href="#">关于影视大全</a>
+  </div>
+</nav>
+
+<main>
+
+<section id="hot">
+  <div class="wrap">
+    <div class="sechead">
+      <h2>今日热映 · <em>编辑挑出来的五条</em></h2>
+      <p>按本周新增条目和讨论热度排，不按播放量排。</p>
+    </div>
+    <div class="bento">
+      <article class="card wide">
+        <div class="ph p1"><i>周二更新</i><b>雾港来信</b></div>
+        <div class="body">
+          <h3>雾港来信</h3>
+          <p>一封寄错地址的信，牵出港口小镇三十年前的那场火。前四集埋得慢，第五集一次收网。</p>
+          <div class="meta"><span>12 集</span><span>单集 48 分钟</span><span>悬疑 / 年代</span></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="ph p2"><i>周三更新</i><b>南风知我</b></div>
+        <div class="body">
+          <h3>南风知我</h3>
+          <p>两个在同一栋写字楼加班的人，靠电梯间的一分钟说话。</p>
+          <div class="meta"><span>24 集</span><span>单集 32 分钟</span></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="ph p3"><i>已完结</i><b>第七号放映厅</b></div>
+        <div class="body">
+          <h3>第七号放映厅</h3>
+          <p>一家快拆的老影院，最后一任放映员记得每一部放过什么。</p>
+          <div class="meta"><span>8 集</span><span>单集 55 分钟</span></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="ph p4"><i>周五更新</i><b>雨季没有结尾</b></div>
+        <div class="body">
+          <h3>雨季没有结尾</h3>
+          <p>三个室友在毕业前那个夏天反复搬家，房租是唯一的剧情主线。</p>
+          <div class="meta"><span>16 集</span><span>单集 40 分钟</span></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="ph p5"><i>周六更新</i><b>山那边的邮路</b></div>
+        <div class="body">
+          <h3>山那边的邮路</h3>
+          <p>一条走了二十年的投递线，拍得比想象中干，反倒耐看。</p>
+          <div class="meta"><span>10 集</span><span>单集 45 分钟</span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="rank">
+  <div class="wrap">
+    <div class="sechead">
+      <h2>剧集排行 · <em>近三十天的补片顺序</em></h2>
+      <p>评语只写一句，不打分，排序来自编辑轮值和读者回执。</p>
+    </div>
+    <ol class="rank">
+      <li><span class="no">01</span><div><h3>雾港来信 <span class="tag hot">热度高</span></h3><p>第五集那场审讯戏，值得单独看一遍。</p></div><span class="score">回执 1,284</span></li>
+      <li><span class="no">02</span><div><h3>第七号放映厅</h3><p>完结了再补最舒服，不用等。</p></div><span class="score">回执 1,106</span></li>
+      <li><span class="no">03</span><div><h3>南风知我 <span class="tag">轻体量</span></h3><p>通勤路上的长度，一集正好一站半。</p></div><span class="score">回执 973</span></li>
+      <li><span class="no">04</span><div><h3>山那边的邮路</h3><p>慢，但每一集都走完一段路。</p></div><span class="score">回执 812</span></li>
+      <li><span class="no">05</span><div><h3>雨季没有结尾</h3><p>台词密度高，适合开着字幕看。</p></div><span class="score">回执 705</span></li>
+      <li><span class="no">06</span><div><h3>铁轨以东</h3><p>调度戏拍得专业，人物略薄。</p></div><span class="score">回执 664</span></li>
+      <li><span class="no">07</span><div><h3>午后的第三通电话</h3><p>反转在第七通，前面别快进。</p></div><span class="score">回执 588</span></li>
+      <li><span class="no">08</span><div><h3>旧货市场的夏天</h3><p>群像松散，胜在气氛。</p></div><span class="score">回执 521</span></li>
+    </ol>
+  </div>
+</section>
+
+<section id="calendar">
+  <div class="wrap">
+    <div class="sechead">
+      <h2>追剧日历 · <em>这一周哪天有得看</em></h2>
+      <p>按北京时间标注，延期会在当天上午改一次。</p>
+    </div>
+    <div class="cal">
+      <div class="day"><h4>周一 <em>3 条</em></h4><ul><li>铁轨以东<span>第 9 集 · 21:00</span></li><li>旧货市场的夏天<span>第 4 集 · 22:00</span></li><li>午后的第三通电话<span>第 12 集 · 20:00</span></li></ul></div>
+      <div class="day"><h4>周二 <em>2 条</em></h4><ul><li>雾港来信<span>第 5 集 · 20:00</span></li><li>南风知我<span>第 11 集 · 12:00</span></li></ul></div>
+      <div class="day"><h4>周三 <em>3 条</em></h4><ul><li>南风知我<span>第 12 集 · 12:00</span></li><li>山那边的邮路<span>第 7 集 · 20:00</span></li><li>影视大全<span>台账更新 · 上午</span></li></ul></div>
+      <div class="day"><h4>周四 <em>2 条</em></h4><ul><li>雨季没有结尾<span>第 13 集 · 21:30</span></li><li>铁轨以东<span>第 10 集 · 21:00</span></li></ul></div>
+      <div class="day"><h4>周五 <em>2 条</em></h4><ul><li>雨季没有结尾<span>第 14 集 · 21:30</span></li><li>第七号放映厅<span>重播全集 · 全天</span></li></ul></div>
+      <div class="day today"><h4>周六 <em>今 日</em></h4><ul><li>山那边的邮路<span>第 8 集 · 20:00</span></li><li>影视大全<span>台账更新 · 上午</span></li></ul></div>
+      <div class="day"><h4>周日 <em>1 条</em></h4><ul><li>雾港来信<span>第 6 集 · 20:00</span></li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="dissect">
+  <div class="wrap">
+    <div class="sechead">
+      <h2>看点拆解 · <em>不剧透的那部分</em></h2>
+      <p>只讲节奏、结构和适合什么状态看，关键情节一律不写。</p>
+    </div>
+    <div class="dissect">
+      <article class="drow">
+        <div class="dcover dc1"><b>第 1–4 集</b></div>
+        <div>
+          <h3>《雾港来信》前四集为什么劝退又留人</h3>
+          <p>四条线并行推进，前两集几乎不给答案。建议一次看两集，单集看容易觉得散。</p>
+          <a class="more" href="#">读完全文</a>
+        </div>
+      </article>
+      <article class="drow">
+        <div class="dcover dc2"><b>全集节奏</b></div>
+        <div>
+          <h3>《南风知我》把一分钟的电梯戏拍了二十四次</h3>
+          <p>固定机位、固定时长，靠台词密度推进。适合碎片时间，不适合连刷。</p>
+          <a class="more" href="#">读完全文</a>
+        </div>
+      </article>
+      <article class="drow">
+        <div class="dcover dc3"><b>拍摄笔记</b></div>
+        <div>
+          <h3>《第七号放映厅》里那台机器是真的在放</h3>
+          <p>剧组借了台还能转的胶片机，放映段落没有后期合成，画面颗粒是真的。</p>
+          <a class="more" href="#">读完全文</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="sechead">
+      <h2>常见问题 · <em>关于影视大全</em></h2>
+      <p>问得最多的五条，直接摊开说。</p>
+    </div>
+    <div class="faq">
+      <details open>
+        <summary>影视大全多久更新一次条目？</summary>
+        <p>周三和周六各整理一次，周三补新上线的条目，周六补旧片与遗漏的集数信息，遇到集中上线会临时加更一期。</p>
+      </details>
+      <details>
+        <summary>影视大全的条目信息从哪里来？</summary>
+        <p>以公开的上映公告、片方资料与播出编排为基础，再由编辑逐条核对集数、时长和类型分组，核对不上的条目会先挂在待确认区，不写入正表。</p>
+      </details>
+      <details>
+        <summary>追剧日历上的时间准不准？</summary>
+        <p>日历按平台公布的更新日排布，遇到延期或加更会在当天上午改一次；跨时区上线的作品按北京时间换算后标注。</p>
+      </details>
+      <details>
+        <summary>影视大全提供在线播放吗？</summary>
+        <p>不提供。这里只做条目检索、排期对照和看点拆解，想看正片请回到持有版权的播放平台。</p>
+      </details>
+      <details>
+        <summary>怎么快速筛掉不合口味的剧？</summary>
+        <p>先看类型分组和单集时长，再看拆解里的节奏描述；连着两集超过九十分钟的一般是慢热型，适合整段空闲时间看。</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sechead">
+      <h2>关于影视大全 · <em>这本台账是谁在记</em></h2>
+      <p>https://yingshidaquan-app.github.io</p>
+    </div>
+    <div class="about">
+      <div>
+        <h3>从一张 Excel 表开始</h3>
+        <p>2019 年只是三个人的共享表格，用来记"哪部剧星期几更"。后来表太长，翻不动了，就搬到了 <a href="#" style="color:var(--flame);border-bottom:1px dotted rgba(255,107,53,.5)">https://yingshidaquan-app.github.io</a>，改成了按周编排。</p>
+        <p>影视大全现在做的事还是那一件：把散在各处的条目、集数和更新时间收在一处，让你在打开播放器之前先做一次筛选。不搬运正片，也不做下载。</p>
+        <p>条目的核对由三位编辑轮值，遇到说法不一致的，以片方公告为准；实在核不上的，宁可空着。</p>
+      </div>
+      <div class="infobox">
+        <div><span>站点名称</span><b>影视大全</b></div>
+        <div><span>网址</span><b>yingshidaquan-app.github.io</b></div>
+        <div><span>开始记录</span><b>2019 年</b></div>
+        <div><span>更新节奏</span><b>周三 / 周六</b></div>
+        <div><span>在库条目</span><b>12,860 条</b></div>
+        <div><span>类型分组</span><b>34 组</b></div>
+        <div><span>页面语言</span><b>简体中文</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footgrid">
+      <div>
+        <h5>条目</h5>
+        <ul>
+          <li><a href="#">今日热映</a></li>
+          <li><a href="#">剧集排行</a></li>
+          <li><a href="#">完结补片</a></li>
+          <li><a href="#">待确认区</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>排期</h5>
+        <ul>
+          <li><a href="#">追剧日历</a></li>
+          <li><a href="#">本周更新</a></li>
+          <li><a href="#">加更提醒</a></li>
+          <li><a href="#">延期公告</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>内容</h5>
+        <ul>
+          <li><a href="#">看点拆解</a></li>
+          <li><a href="#">类型索引</a></li>
+          <li><a href="#">拍摄笔记</a></li>
+          <li><a href="#">编辑手记</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>站点</h5>
+        <ul>
+          <li><a href="#">关于影视大全</a></li>
+          <li><a href="#">常见问题</a></li>
+          <li><a href="#">条目纠错</a></li>
+          <li><a href="#">联系编辑部</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footbar">
+      <span>© <span id="yr">2026</span> 影视大全 · <a href="#">https://yingshidaquan-app.github.io</a></span>
+      <span>条目信息以片方公告为准 · 不提供在线播放</span>
+    </div>
+    <p class="note">本页剧目与排期为演示示例，用于展示影视大全的条目组织方式；实际条目、更新时间请以各播放平台公布的信息为准。</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var y=document.getElementById('yr');
+  if(y){y.textContent=new Date().getFullYear();}
+  var links=document.querySelectorAll('a[href="#"]');
+  for(var i=0;i<links.length;i++){
+    links[i].addEventListener('click',function(e){e.preventDefault();});
+  }
+})();
+</script>
+</body>
+</html>
